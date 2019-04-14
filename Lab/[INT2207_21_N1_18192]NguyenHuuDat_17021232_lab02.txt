@@ -1,0 +1,80 @@
+CREATE TABLE productlines( 
+
+	productline VARCHAR(50)
+		NOT NULL PRIMARY KEY,
+
+	textDescription VARCHAR(4000)
+		NOT NULL,
+
+	htmltDescription MEDIUMTEXT
+		NOT NULL,
+
+	image MEDIUMBLOB
+		NOT NULL
+);
+
+CREATE TABLE orders( 
+
+	orderNumber INT(11)
+		NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+	orderDate DATETIME,
+
+	requiredDate DATETIME,
+
+	shippedDate DATETIME
+		NOT NULL,
+
+	status VARCHAR(15),
+
+	comments TEXT
+		NOT NULL,
+
+	customerNumber INT(11)
+);
+
+CREATE TABLE products(
+	productCode VARCHAR(15)
+		NOT NULL PRIMARY KEY,
+
+	productName VARCHAR(70),
+
+	productLine VARCHAR(50)
+		UNIQUE,
+
+	productScale VARCHAR(10),
+
+	productVendor VARCHAR(50),
+
+	productDescription TEXT,
+
+	quantityInStock SMALLINT(6),
+
+	buyPrice DOUBLE
+);
+
+CREATE TABLE orderdetails(
+
+	orderNumber INT(11)
+		NOT NULL AUTO_INCREMENT,
+
+	productCode VARCHAR(15)
+		NOT NULL,
+
+	quantituOrdered INT(11),
+
+	priceEach DOUBLE,
+
+	orderLineNumber SMALLINT(6),
+
+	PRIMARY KEY(orderNumber, productCode)
+);
+
+ALTER TABLE orderdetails
+ADD CONSTRAINT FK_ORDERS FOREIGN KEY(orderNumber) REFERENCES orders(orderNumber) ON UPDATE CASCADE;
+
+ALTER TABLE orderdetails
+ADD CONSTRAINT FK_products FOREIGN KEY (productCode) REFERENCES products (productCode) ON UPDATE CASCADE;
+
+ALTER TABLE products
+ADD CONSTRAINT FK_productlines FOREIGN KEY(productline) REFERENCES productlines(productline) ON UPDATE CASCADE;

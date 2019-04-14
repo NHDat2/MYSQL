@@ -1,0 +1,21 @@
+SELECT employeeNumber, lastName
+	FROM employees
+		WHERE reportsTo is not NULL;
+		
+SELECT
+	DISTINCT CustomerNumber
+		FROM Orders;
+
+SELECT *
+	FROM Orders
+		WHERE requiredDate = '2003/01/18';
+
+SELECT *
+	FROM Orders
+		WHERE orderDate < '2005/05/01'
+			AND orderDate >= '2005/04/01'
+			AND status = 'Shipped';
+SELECT *
+	FROM ProductLines
+		WHERE ProductLine = 'Classic Cars';
+			

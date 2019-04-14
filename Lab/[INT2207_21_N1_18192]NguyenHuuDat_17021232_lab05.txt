@@ -1,0 +1,23 @@
+SELECT SUBSTR(productDescription, 1, 50)
+	AS 'Title of products' FROM products;
+
+SELECT CONCAT_WS(' - ',	
+	CONCAT(firstName, lastName), jobTitle)
+		AS 'employeeDescriptions(fullName, jobTitle)'
+			FROM employees;
+
+UPDATE products
+	SET productline =
+		REPLACE(productline, 'Cars', 'Automobiles');
+
+SELECT *
+	FROM orders
+		ORDER BY shippedDate LIMIT 5;
+
+SELECT *
+	FROM orders
+		WHERE
+			EXTRACT(YEAR FROM orderDate) = 2005
+				AND
+			EXTRACT(MONTH FROM orderDate) = 5
+				AND shippedDate IS NULL \G;

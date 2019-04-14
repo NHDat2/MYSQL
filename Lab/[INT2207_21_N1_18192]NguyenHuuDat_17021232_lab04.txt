@@ -1,0 +1,24 @@
+SELECT *
+	FROM customers
+		WHERE city
+			IN ('Nantes', 'Lyon');
+
+SELECT *
+	FROM orders
+		WHERE shippedDate
+			BETWEEN '2003/01/10'
+				AND '2003/03/10';
+
+SELECT *
+	FROM productlines
+		WHERE productline
+			LIKE '%CARS%';
+
+SELECT *
+	FROM products
+		ODER BY quantityInStock
+			DESC LIMIT 10;
+
+SELECT *, (buyPrice * quantityOrdered)
+	AS TienHangTon
+		FROM orderdetails;
